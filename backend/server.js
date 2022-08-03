@@ -1,3 +1,6 @@
+//Import Mongoose
+const mongoose = require('mongoose');
+
 //import express
 const express = require('express');
 
@@ -22,7 +25,15 @@ app.use((req, res, next) => {
 //Routes
 app.use('/api/products', productRoutes);
 
-//Server waiting
-app.listen(process.env.PORT, () => {
-  console.log('waiting on', process.env.PORT);
-});
+//Connect MongoDB
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    //Server waiting
+    app.listen(process.env.PORT, () => {
+      console.log('Connected to db & waiting on', process.env.PORT);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
