@@ -1,10 +1,12 @@
+//Import express
 const express = require('express');
 
+//Router instance
 const router = express.Router();
 
 //Get all products
 router.get('/', (req, res) => {
-  res.json({ msg: 'hi' });
+  res.json({ msg: 'Get all products' });
 });
 
 //Get a single product
@@ -20,6 +22,11 @@ router.post('/', (req, res) => {
 //Delete product
 router.delete('/:id', (req, res) => {
   res.json({ msg: 'hi delete' });
+});
+
+//Patch product
+router.patch('/:id', (req, res) => {
+  res.json({ msg: 'add qty' });
 });
 
 module.exports = router;
