@@ -31,6 +31,26 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const { title, desc, qty, price } = req.body;
 
+  let emptyFields = [];
+
+  if (!title) {
+    emptyFields.push('title');
+  }
+  if (!desc) {
+    emptyFields.push('desc');
+  }
+  if (!qty) {
+    emptyFields.push('qty');
+  }
+  if (!price) {
+    emptyFields.push('price');
+  }
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: 'Please enter all details', emptyFields });
+  }
+
   try {
     const product = await Product.create({ title, desc, qty, price });
     res.status(200).json(product);
