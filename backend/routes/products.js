@@ -15,6 +15,10 @@ const {
   deleteProduct,
   updateProduct,
 } = require('../controllers/productController');
+const requireAuth = require('../middleware/requireAuth');
+
+//Req auth for all route
+router.use(requireAuth);
 
 //Get all products
 router.get('/', getProducts);

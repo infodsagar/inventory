@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Navbar = () => {
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
+  const handleClick = () => {
+    logout();
+  };
+
   return (
     <header>
       <div className='flex border-2 border-yellow-200 bg-cyan-200'>
@@ -8,12 +16,16 @@ const Navbar = () => {
           <h1 className='p-4 font-bold text-2xl italic'>Shopping Store</h1>
         </Link>
         <nav className='ml-auto mr-8 flex self-center'>
+          <div>{user ? user.email : ''}</div>
           <div className='px-2 text-xl'>
             <Link to='/login'>Login</Link>
           </div>
           <div className='text-xl'>
             <Link to='/Signup'>Signup</Link>
           </div>
+          <button onClick={handleClick} className='px-2 text-xl'>
+            Logout
+          </button>
         </nav>
       </div>
     </header>
