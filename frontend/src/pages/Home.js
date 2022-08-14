@@ -19,14 +19,14 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <div>
+    <div className='m-2 flex'>
+      <div className='grid grid-cols-3'>
         {products &&
           products.map((product) => {
             return <ProductDetails key={product._id} product={product} />;
           })}
       </div>
-      <div>
+      <div className='ml-auto mr-4'>
         <ProductForm />
       </div>
     </div>

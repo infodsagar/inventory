@@ -16,15 +16,26 @@ const ProductDetails = ({ product }) => {
   };
 
   return (
-    <div>
-      <h4>{product.title}</h4>
+    <div className='border-2 border-blue-100 flex flex-col m-2'>
+      <h4 className='py-2 font-bold text-2xl'>{product.title}</h4>
       <p>{product.desc}</p>
-      <p>Qty: {product.qty}</p>
-      <p>Price: ${product.price}</p>
+      <p className='py-2 '>
+        <span className='font-bold'>Qty:</span> {product.qty}
+      </p>
+      <p>
+        <span className='font-bold'>Price: $</span>
+        {product.price}
+      </p>
       <p>
         {formatDistanceToNow(new Date(product.createdAt), { addSuffix: true })}
       </p>
-      <button onClick={handleClick}>Delete</button>
+
+      <button
+        onClick={handleClick}
+        className='border-2 border-black rounded-xl my-2'
+      >
+        Delete
+      </button>
     </div>
   );
 };

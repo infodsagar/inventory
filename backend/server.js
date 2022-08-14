@@ -12,6 +12,7 @@ const app = express();
 
 //Import from routers folder
 const productRoutes = require('./routes/products');
+const userRoutes = require('./routes/users');
 
 //Middleware
 //parse data from api
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.use('/api/products', productRoutes);
+app.use('/api/user', userRoutes);
 
 //Connect MongoDB
 mongoose

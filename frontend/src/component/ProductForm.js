@@ -44,35 +44,43 @@ const ProductForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ display: 'flex', flexDirection: 'column' }}
+      className='flex flex-col items-center	 border-2 border-black min-w-[30vw] max-w-[500px]'
     >
-      <h3>Add new prodcut</h3>
-      <label>Product Title:</label>
+      <h3 className='py-2 font-bold text-xl'>Add new prodcut</h3>
+      <label className='self-start pl-2'>Product Title:</label>
       <input
         type='text'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className={emptyFields.includes('title') ? error : ''}
+        className='border-2 border-black min-w-[96%]'
       ></input>
-      <label>Product Desc:</label>
+      <label className='self-start pl-2'>Product Desc:</label>
       <input
         type='text'
         value={desc}
         onChange={(e) => setDesc(e.target.value)}
+        className='border-2 border-black min-w-[96%]'
       ></input>
-      <label>Product Qty:</label>
+      <label className='self-start pl-2'>Product Qty:</label>
       <input
         type='text'
         value={qty}
         onChange={(e) => setQty(e.target.value)}
+        className='border-2 border-black min-w-[96%]'
       ></input>
-      <label>Product Price($):</label>
+      <label className='self-start pl-2'>Product Price($):</label>
       <input
         type='text'
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+        className='border-2 border-black min-w-[96%]'
       ></input>
-      <button type='submit'>Add Product</button>
+      <button
+        type='submit'
+        className='border-2 border-black rounded-xl my-2 min-w-[70%]'
+      >
+        Add Product
+      </button>
       {error && <div>{error}</div>}
     </form>
   );
