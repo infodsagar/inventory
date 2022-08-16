@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useProductsContext } from '../hooks/useProductsContext';
 
 const ProductForm = () => {
   const { dispatch } = useProductsContext();
+  const { user } = useAuthContext();
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -14,6 +16,10 @@ const ProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      setError('You must be log in');
+      return;
+    }
     const product = { title, desc, qty, price };
 
     const response = await fetch('/api/products', {
@@ -21,6 +27,7 @@ const ProductForm = () => {
       body: JSON.stringify(product),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();

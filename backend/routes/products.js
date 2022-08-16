@@ -15,6 +15,7 @@ const {
   deleteProduct,
   updateProduct,
 } = require('../controllers/productController');
+
 const requireAuth = require('../middleware/requireAuth');
 
 //Req auth for all route

@@ -2,21 +2,27 @@ import { useEffect } from 'react';
 import ProductDetails from '../component/ProductDetails';
 import ProductForm from '../component/ProductForm';
 import { useProductsContext } from '../hooks/useProductsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = () => {
   const { products, dispatch } = useProductsContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('api/products');
+      const response = await fetch('api/products', {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       const json = await response.json();
 
       if (response.ok) {
         dispatch({ type: 'SET_PRODUCTS', payload: json });
       }
     };
-    fetchProducts();
-  }, [dispatch]);
+    if (user) {
+      fetchProducts();
+    }
+  }, [dispatch, user]);
 
   return (
     <div className='m-2 flex'>
