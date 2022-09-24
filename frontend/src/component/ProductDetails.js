@@ -15,6 +15,7 @@ const ProductDetails = ({ product }) => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${user.token}` },
     });
+
     const json = await response.json();
 
     if (response.ok) {

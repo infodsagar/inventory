@@ -11,8 +11,10 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch('api/products', {
+        method: 'GET',
         headers: { Authorization: `Bearer ${user.token}` },
       });
+
       const json = await response.json();
 
       if (response.ok) {

@@ -20,6 +20,7 @@ const ProductForm = () => {
       setError('You must be log in');
       return;
     }
+
     const product = { title, desc, qty, price };
 
     const response = await fetch('/api/products', {
@@ -30,12 +31,14 @@ const ProductForm = () => {
         Authorization: `Bearer ${user.token}`,
       },
     });
+
     const json = await response.json();
 
     if (!response.ok) {
       setError(json.error);
       setEmptyFields(json.emptyFields);
     }
+
     if (response.ok) {
       setTitle('');
       setDesc('');
